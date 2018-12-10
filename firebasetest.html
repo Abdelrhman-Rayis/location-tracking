@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>firbase test</title>
+	 <link type="text/css" rel="stylesheet" href="//pubnub.github.io/eon/v/eon/1.0.0/eon.css"/>
+</head>
+<body>
+	<h1 id="bigOne"></h1>
+
+<script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
+ <script type="text/javascript" src="//pubnub.github.io/eon/v/eon/1.0.0/eon.js"></script>
+              <script type="text/javascript">
+               var pubnub = new PubNub({
+  publishKey: 'pub-c-e8aaf35c-da49-40f3-9a4c-3140a61e8a1e',
+  subscribeKey: 'sub-c-48c8271c-fc56-11e8-a860-92908bb92f21'
+});
+eon.map({
+  id: 'map',
+  mbId: 'YOUR_MAPBOX_ID',
+  mbToken: 'YOUR_MAPBOX_TOKEN',
+  channel: 'south-coast-bus-data',
+  rotate: true,
+  history: true,
+  marker: function (latlng, data) {
+
+    var marker = new L.RotatedMarker(latlng, {
+      icon: L.icon({
+        iconUrl: 'https://i.imgur.com/2fmFQfN.png',
+        iconSize: [9, 32]
+      })
+    });
+
+    marker.bindPopup('Route ' + data.routeTag.toUpperCase());
+
+    return marker;
+
+  }
+});
+              </script> 
+              
+</body>
+</html>
